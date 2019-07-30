@@ -11,9 +11,9 @@ Hello Bitches
 
   <p>
     <label> Czy przychód?
-      <select th:selected="${transaction.getTTypeString()}"   name="ttype">
-        <option value="true">true</option>
-        <option value="false">false</option>
+      <select    name="ttype">
+        <option value="false" th:selected="${transaction.getTTypeString()}">false</option>
+        <option value="true" th:selected="${transaction.getTTypeString()}">true</option>
       </select>
     </label>
   </p>
