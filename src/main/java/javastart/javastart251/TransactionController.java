@@ -38,16 +38,24 @@ public class TransactionController {
     }
 
     @RequestMapping("/addProduct")
-    public String addProduct(Model model, @RequestParam() boolean ttype,
+    public String addProduct(Model model, @RequestParam() String ttype,
             @RequestParam() String description,
-            @RequestParam Monetary amount,
+            @RequestParam String amount,
             @RequestParam Date date) {
 
 
        getTransactionRepository().addTransaction(new Transaction());
 
 
-        return "redirect:/DisplayWithPagination.html";
+        return "redirect:/DisplayAll";
     }
+
+    @GetMapping("/DisplayAll")
+    public String displayAll(Model model) {
+
+        return "Index";
+    }
+
+
 
 }

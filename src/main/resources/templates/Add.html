@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Main Page</title>
 </head>
 <body>
 Hello Bitches
+
+<form method="post" action="/addProduct">
+
+  <label> Czy przychód?
+    <select name="ttype">
+      <option value="true">true</option>
+      <option value="false">false</option>
+    </select>
+  </label>
+
+  <label> opis<textarea maxlength="50" placeholder="opis transakcji" name="description"></textarea></label>
+
+  <label>kwota <input type="text" name="amount"/></label>
+
+  <label>Data transakcji
+    <input type="date" name="date">
+  </label>
+
+  <button type="submit"> dodaj</button>
+
+
+</form>
 </body>
 </html>
