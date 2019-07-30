@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Main Page</title>
+</head>
+<body>
+Hello Bitches
+
+<form th:method="post" th:action="@{'/Update/' + ${transaction.getId()}}">
+
+  <p>
+    <label> Czy przychód?
+      <select th:selected="${transaction.getTTypeString()}"   name="ttype">
+        <option value="true">true</option>
+        <option value="false">false</option>
+      </select>
+    </label>
+  </p>
+  <p>
+    <label> opis<textarea maxlength="50" placeholder="opis transakcji" name="description" th:text="${transaction.getDescription()}"></textarea></label>
+  </p>
+  <p>
+  <label>kwota <input type="text" name="amount" th:value="${transaction.getAmount()}"/></label>
+  </p>
+  <p>
+  <label>Data transakcji
+    <input type="date" name="date" th:value="${transaction.getDate()}">
+  </label>
+  </p>
+  <p>
+  <button type="submit"> modyfikuj</button>
+  </p>
+
+</form>
+
+<a href="/">powrót do menu głównego</a>
+</body>
+</html>

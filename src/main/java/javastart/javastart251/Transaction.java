@@ -57,6 +57,13 @@ public class Transaction {
         return this.ttype;
     }
 
+    public String getTTypeString(){
+        if(this.ttype){
+            return "true";
+        }
+        return "false";
+    }
+
     public Transaction() {
     }
 

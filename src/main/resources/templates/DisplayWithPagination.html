@@ -16,6 +16,7 @@
     <th>Data</th>
     <th>Link do szczegółów</th>
     <th>Link do usuwania</th>
+    <th>Link do modyfikacji</th>
   </tr>
   <tr th:each="transaction: ${transactions}">
     <td th:text="${transaction.getId()}"></td>
@@ -25,6 +26,7 @@
     <td th:text="${transaction.getDate()}"></td>
     <td><a th:href="@{'DisplayDetails/' + ${transaction.getId()}}">link</a></td>
     <td><a th:href="@{'Delete/' + ${transaction.getId()}}">link</a></td>
+    <td><a th:href="@{'Modify/' + ${transaction.getId()}}">link</a></td>
 
   </tr>
 

@@ -51,6 +51,42 @@ public class TransactionController {
         return "redirect:/all";
     }
 
+
+    @GetMapping("/Modify/{id}")
+    public String modify(Model model, @PathVariable(value="id") String id) {
+        Transaction transaction = transactionDao.findByID(Long.parseLong(id));
+
+
+
+
+        model.addAttribute("transaction", transaction);
+
+
+        return "Modify";
+    }
+
+    @RequestMapping("/Update/{id}")
+    public String update(Model model,
+            @PathVariable(value="id") String id,
+            @RequestParam() String ttype,
+            @RequestParam() String description,
+            @RequestParam String amount,
+            @RequestParam Date date) {
+        Transaction transaction = transactionDao.findByID(Long.parseLong(id));
+
+        transaction.setDescription(description);
+        transaction.setDate(date);
+        transaction.setAmount(new BigDecimal(amount));
+        transaction.setTtype(ttype.equals("true"));
+
+        transactionDao.update(transaction);
+
+
+        return "redirect:/all";
+    }
+
+
+
     @RequestMapping("/addProduct")
     public String addProduct(Model model, @RequestParam() String ttype,
             @RequestParam() String description,
