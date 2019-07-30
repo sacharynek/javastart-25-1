@@ -152,5 +152,59 @@ public class TransactionDao {
     }
 
 
+    public List<Transaction> getAllIncome() {
 
+        Connection connection = connect();
+        List<Transaction> output = new ArrayList<>();
+
+        PreparedStatement preparedStatement = null;
+        try {
+            String sql = "SELECT * FROM transactions where ttype='true'";
+            preparedStatement = connection.prepareStatement(sql);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                long idFromDb = resultSet.getLong("id");
+                boolean ttype = resultSet.getBoolean("ttype");
+                String description = resultSet.getString("tdescription");
+                BigDecimal amount = resultSet.getBigDecimal("amount");
+                Date date = resultSet.getDate("tdate");
+                output.add(new Transaction(idFromDb, ttype, description, amount, date));
+            }
+        } catch (SQLException e) {
+            System.out.println("Niepowodzenie podczas zapisu do bazy: " + e.getMessage());
+        }
+
+        closeConnection(connection);
+
+        return output;
+    }
+
+    public List<Transaction> getAllCost() {
+
+        Connection connection = connect();
+        List<Transaction> output = new ArrayList<>();
+
+        PreparedStatement preparedStatement = null;
+        try {
+            String sql = "SELECT * FROM transactions where ttype='false'";
+            preparedStatement = connection.prepareStatement(sql);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                long idFromDb = resultSet.getLong("id");
+                boolean ttype = resultSet.getBoolean("ttype");
+                String description = resultSet.getString("tdescription");
+                BigDecimal amount = resultSet.getBigDecimal("amount");
+                Date date = resultSet.getDate("tdate");
+                output.add(new Transaction(idFromDb, ttype, description, amount, date));
+            }
+        } catch (SQLException e) {
+            System.out.println("Niepowodzenie podczas zapisu do bazy: " + e.getMessage());
+        }
+
+        closeConnection(connection);
+
+        return output;
+    }
 }

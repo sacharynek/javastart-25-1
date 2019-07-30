@@ -39,6 +39,26 @@ public class TransactionController {
         return "DisplayWithPagination";
     }
 
+    @GetMapping("/allIncome")
+    public String displayIncome(Model model) {
+
+        List<Transaction> transactions = transactionDao.getAllIncome();
+        model.addAttribute("transactions", transactions);
+
+
+        return "DisplayWithPagination";
+    }
+
+    @GetMapping("/allCost")
+    public String displayCost(Model model) {
+
+        List<Transaction> transactions = transactionDao.getAllCost();
+        model.addAttribute("transactions", transactions);
+
+
+        return "DisplayWithPagination";
+    }
+
     @GetMapping("/add")
     public String add(Model model) {
 
