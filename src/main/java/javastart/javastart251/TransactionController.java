@@ -12,14 +12,14 @@ import javax.money.Monetary;
 @Controller
 public class TransactionController {
 
-    private TransactionRepository transactionRepository;
+    private TransactionDao transactionDao;
 
-    private TransactionRepository getTransactionRepository(){
-        return this.transactionRepository;
+    private TransactionDao getTransactionDao(){
+        return this.transactionDao;
     }
 
-    public TransactionController(TransactionRepository transactionRepository){
-        this.transactionRepository  = transactionRepository;
+    public TransactionController(){
+        this.transactionDao = new TransactionDao();
 
     }
 
@@ -44,7 +44,7 @@ public class TransactionController {
             @RequestParam Date date) {
 
 
-       getTransactionRepository().addTransaction(new Transaction());
+       getTransactionDao().insert(new Transaction());
 
 
         return "redirect:/DisplayAll";
@@ -52,6 +52,10 @@ public class TransactionController {
 
     @GetMapping("/DisplayAll")
     public String displayAll(Model model) {
+
+
+
+
 
         return "Index";
     }

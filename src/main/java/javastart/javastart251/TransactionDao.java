@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransactionDao {
 
@@ -34,7 +36,7 @@ public class TransactionDao {
 
         PreparedStatement preparedStatement = null;
         try {
-            String sql = "SELECT * FROM transactions WHERE isbn = ?";
+            String sql = "SELECT * FROM transactions WHERE id = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -76,6 +78,35 @@ public class TransactionDao {
 
         closeConnection(connection);
     }
+
+
+    public List<Transaction> getAllTransactions() {
+        Connection connection = connect();
+        List<Transaction> output = new ArrayList<>();
+
+        PreparedStatement preparedStatement = null;
+        try {
+            String sql = "SELECT * FROM transactions";
+            preparedStatement = connection.prepareStatement(sql);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                long idFromDb = resultSet.getLong("id");
+                boolean ttype = resultSet.getBoolean("ttype");
+                String description = resultSet.getString("tdescription");
+                BigDecimal amount = resultSet.getBigDecimal("amount");
+                Date date = resultSet.getDate("tdate");
+                output.add(new Transaction(idFromDb, ttype, description, amount, date));
+            }
+        } catch (SQLException e) {
+            System.out.println("Niepowodzenie podczas zapisu do bazy: " + e.getMessage());
+        }
+
+        closeConnection(connection);
+
+        return output;
+    }
+
 
     public void deleteByID(Long id) {
         Connection connection = connect();
