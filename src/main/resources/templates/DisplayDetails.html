@@ -5,6 +5,14 @@
   <title>Main Page</title>
 </head>
 <body>
-Hello Bitches
+Transakcja
+<h3>ID:  <span th:text="${transaction.getId()}"></span></h3>
+<h3>Wartość: <span th:text="${transaction.getAmount()}"></span></h3>
+<h3>Czy Przychód?: <span th:text="${transaction.getTType()}"></span></h3>
+<h3>Data: <span th:text="${transaction.getDate()}"></span></h3>
+<h3>Opis: <span th:text="${transaction.getDescription()}"></span></h3>
+
+
+<a href="/">powrót do menu głównego</a>
 </body>
 </html>

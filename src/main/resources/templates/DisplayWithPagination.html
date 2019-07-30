@@ -5,13 +5,33 @@
   <title>Main Page</title>
 </head>
 <body>
-Hello Bitches
 
-<!-- here put a table-->
-<!-- there should be a select at the bottom telling how many rows should be displayed
 
-This should be either handled by js, that will update the page, or by refresh that will be set
--->
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Czy Przychód</th>
+    <th>Opis</th>
+    <th>Kwota</th>
+    <th>Data</th>
+    <th>Link do szczegółów</th>
+    <th>Link do usuwania</th>
+  </tr>
+  <tr th:each="transaction: ${transactions}">
+    <td th:text="${transaction.getId()}"></td>
+    <td th:text="${transaction.getTType()}"></td>
+    <td th:text="${transaction.getDescription()}"></td>
+    <td th:text="${transaction.getAmount()}"></td>
+    <td th:text="${transaction.getDate()}"></td>
+    <td><a th:href="@{'DisplayDetails/' + ${transaction.getId()}}">link</a></td>
+    <td><a th:href="@{'Delete/' + ${transaction.getId()}}">link</a></td>
+
+  </tr>
+
+
+  <a href="/">powrót do menu głównego</a>
+
+</table>
 
 </body>
 </html>

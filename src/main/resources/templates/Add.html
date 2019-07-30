@@ -8,25 +8,31 @@
 Hello Bitches
 
 <form method="post" action="/addProduct">
-
-  <label> Czy przychód?
-    <select name="ttype">
-      <option value="true">true</option>
-      <option value="false">false</option>
-    </select>
-  </label>
-
-  <label> opis<textarea maxlength="50" placeholder="opis transakcji" name="description"></textarea></label>
-
+  <p>
+    <label> Czy przychód?
+      <select name="ttype">
+        <option value="true">true</option>
+        <option value="false">false</option>
+      </select>
+    </label>
+  </p>
+  <p>
+    <label> opis<textarea maxlength="50" placeholder="opis transakcji" name="description"></textarea></label>
+  </p>
+  <p>
   <label>kwota <input type="text" name="amount"/></label>
-
+  </p>
+  <p>
   <label>Data transakcji
     <input type="date" name="date">
   </label>
-
+  </p>
+  <p>
   <button type="submit"> dodaj</button>
-
+  </p>
 
 </form>
+
+<a href="/">powrót do menu głównego</a>
 </body>
 </html>
