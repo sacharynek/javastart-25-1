@@ -159,7 +159,7 @@ public class TransactionDao {
 
         PreparedStatement preparedStatement = null;
         try {
-            String sql = "SELECT * FROM transactions where ttype='true'";
+            String sql = "SELECT * FROM transactions where ttype='1'";
             preparedStatement = connection.prepareStatement(sql);
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -187,7 +187,7 @@ public class TransactionDao {
 
         PreparedStatement preparedStatement = null;
         try {
-            String sql = "SELECT * FROM transactions where ttype='false'";
+            String sql = "SELECT * FROM transactions where ttype='0' ";
             preparedStatement = connection.prepareStatement(sql);
 
             ResultSet resultSet = preparedStatement.executeQuery();
